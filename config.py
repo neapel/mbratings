@@ -19,14 +19,14 @@ class Configuration():
 
 	def set_username(self, new):
 		print 'set username=%s' % new
-		self.gconf.set_string(GCONF_KEYS['username'], new + "!!")
+		self.gconf.set_string(GCONF_KEYS['username'], new)
 
 	def get_password(self):
 		return self.gconf.get_string(GCONF_KEYS['password'])
 
 	def set_password(self, new):
 		print 'set password=%s' % new
-		self.gconf.set_string(GCONF_KEYS['password'], new + "!!")
+		self.gconf.set_string(GCONF_KEYS['password'], new)
 
 	def get_webservice(self):
 		print 'usr=%s pwd=%s' % (self.get_username(), self.get_password())
@@ -43,7 +43,7 @@ class MusicBrainzRatingsConfigDialog(gtk.Dialog):
 
 		builder = gtk.Builder()
 		builder.add_from_file(plugin.find_file('config.glade'))
-		self.get_content_area().add(builder.get_object('vbox'))
+		self.get_content_area().add(builder.get_object('root'))
 
 		self.add_action_widget(gtk.Button(stock=gtk.STOCK_CLOSE), 0)
 		self.show_all()
