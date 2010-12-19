@@ -6,4 +6,4 @@ Name=MusicBrainz Ratings
 Description=Synchronizes your library ratings with your MusicBrains account.
 Authors=Pascal Germroth <pascal@ensieve.org>
 Copyright=©2010 Pascal Germroth, GPLv3
-Website=http://ensieve.org/
+Website=https://github.com/funkycoder/mbratings
