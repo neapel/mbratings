@@ -1,0 +1,6 @@
+This is a python plugin for Rhythmbox to automatically synchronize the ratings from your library to your musicbrainz.org-account.
+
+Requires the musicbrainz2 python module (ubuntu package: python-musicbrainz2)
+
+
+You must have used a MusicBrainz tagger which adds the track-UUID as metadata to your audio files for this to work. "Rated tracks" in the settings counts the number of UUID'd tracks that were submitted, "untagged tracks" is the number of unrecognized tracks. (I might add an option to list these tracks later…)
