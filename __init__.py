@@ -37,7 +37,7 @@ class MusicBrainzRatings(rb.Plugin):
 		''' Waits on the queue and submits ratings to server. '''
 		while True:
 			track, rating = self.queue.get(True, None)
-			print 'submitting %s=%d, queued %d' % (track, rating, self.queue.size())
+			print 'submitting %s=%d, queued %d' % (track, rating, self.queue.qsize())
 			conn = self.conf.get_webservice()
 			submit_rating(conn, track, rating)
 			self.remote.add(track, rating)
