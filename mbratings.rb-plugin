@@ -1,0 +1,9 @@
+[RB Plugin]
+Loader=python
+Module=mbratings
+IAge=1
+Name=MusicBrainz Ratings
+Description=Synchronizes your library ratings with your MusicBrains account.
+Authors=Pascal Germroth <pascal@ensieve.org>
+Copyright=©2010 Pascal Germroth, GPLv3
+Website=http://ensieve.org/
