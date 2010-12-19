@@ -1,7 +1,7 @@
-MusicBrainz ratings synchroinzation
+MusicBrainz ratings synchroinsation
 ===================================
 
-This is a python plugin for Rhythmbox to automatically synchronize the ratings from your library to your [musicbrainz.org](http://musicbrainz.org)-account.
+This is a python plugin for [Rhythmbox](http://www.rhythmbox.org/) to automatically synchronise the ratings from your library to your [musicbrainz.org](http://musicbrainz.org)-account. They will be visible on your [user profile](http://musicbrainz.org/user/ratings/).
 
 Requires the `musicbrainz2` python module.
 
