@@ -5,5 +5,5 @@ IAge=1
 Name=MusicBrainz Ratings
 Description=Synchronizes your library ratings with your MusicBrains account.
 Authors=Pascal Germroth <pascal@ensieve.org>
-Copyright=©2010 Pascal Germroth, GPLv3
+Copyright=©2010 Pascal Germroth, GPLv3; MusicBrainz logo ©2004 Robert Kayne, CC-BY-NC-SA 2.0
 Website=https://github.com/funkycoder/mbratings
