@@ -21,7 +21,7 @@ class Configuration():
 		print 'set username=%s' % new
 		self.gconf.set_string(GCONF_KEYS['username'], new + "!!")
 
-def get_password(self):
+	def get_password(self):
 		return self.gconf.get_string(GCONF_KEYS['password'])
 
 	def set_password(self, new):
@@ -48,8 +48,8 @@ class MusicBrainzRatingsConfigDialog(gtk.Dialog):
 		self.add_action_widget(gtk.Button(stock=gtk.STOCK_CLOSE), 0)
 		self.show_all()
 
-		builder.get_object('username').set_text(plugin.conf.username or '')
-		builder.get_object('password').set_text(plugin.conf.password or '')
+		builder.get_object('username').set_text(plugin.conf.get_username() or '')
+		builder.get_object('password').set_text(plugin.conf.get_password() or '')
 
 		self.login_test_default = 'Test Login'
 		self.login_test = builder.get_object('login-test')

@@ -5,11 +5,13 @@
   <object class="GtkVBox" id="vbox">
     <property name="visible">True</property>
     <child>
-      <object class="GtkImage" id="image1">
+      <object class="GtkImage" id="logo">
         <property name="visible">True</property>
         <property name="pixbuf">logo.svg</property>
       </object>
       <packing>
+        <property name="expand">False</property>
+        <property name="padding">5</property>
         <property name="position">0</property>
       </packing>
     </child>
