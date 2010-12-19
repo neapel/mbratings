@@ -11,6 +11,8 @@ GCONF_KEYS = {
 }
 
 class Configuration():
+	''' Wrapper around gConf '''
+
 	def __init__(self):
 		self.gconf = gconf.client_get_default()
 
@@ -18,30 +20,29 @@ class Configuration():
 		return self.gconf.get_string(GCONF_KEYS['username'])
 
 	def set_username(self, new):
-		print 'set username=%s' % new
 		self.gconf.set_string(GCONF_KEYS['username'], new)
 
 	def get_password(self):
 		return self.gconf.get_string(GCONF_KEYS['password'])
 
 	def set_password(self, new):
-		print 'set password=%s' % new
 		self.gconf.set_string(GCONF_KEYS['password'], new)
 
 	def get_webservice(self):
-		print 'usr=%s pwd=%s' % (self.get_username(), self.get_password())
 		return WebService(username=self.get_username(), password=self.get_password())
 
 
 
 class MusicBrainzRatingsConfigDialog(gtk.Dialog):
+	''' Config dialog '''
+
 	def __init__(self, plugin):
 		gtk.Dialog.__init__(self)
 		self.plugin = plugin
 
 		self.set_border_width(12)
 
-		builder = gtk.Builder()
+		builder = self.builder = gtk.Builder()
 		builder.add_from_file(plugin.find_file('config.glade'))
 		self.get_content_area().add(builder.get_object('root'))
 
@@ -51,11 +52,20 @@ class MusicBrainzRatingsConfigDialog(gtk.Dialog):
 		builder.get_object('username').set_text(plugin.conf.get_username() or '')
 		builder.get_object('password').set_text(plugin.conf.get_password() or '')
 
-		self.login_test_default = 'Test Login'
+		self.login_test_default = _('Test Login')
 		self.login_test = builder.get_object('login-test')
 		self.login_test.set_label(self.login_test_default)
 
+		self.update_stats()
+
 		builder.connect_signals(self)
+
+
+	def update_stats(self):
+		self.builder.get_object('queued-value').set_text(str(self.plugin.queue.qsize()))
+		self.builder.get_object('rated-value').set_text(str(len(self.plugin.remote)))
+		self.builder.get_object('untagged-value').set_text(str(self.plugin.untagged))
+		self.builder.get_object('online-value').set_text('…')
 
 
 	def username_changed(self, box):
@@ -71,7 +81,6 @@ class MusicBrainzRatingsConfigDialog(gtk.Dialog):
 
 
 	def test_login(self, btn):
-		print "TEST LOGIN"
 		try:
 			print "get conn"
 			conn = self.plugin.conf.get_webservice()
@@ -81,17 +90,15 @@ class MusicBrainzRatingsConfigDialog(gtk.Dialog):
 			print "ok"
 		except ConnectionError, e:
 			print e
-			btn.set_label('Server unreachable')
+			btn.set_label(_('Server unreachable'))
 		except AuthenticationError, e:
 			print e
-			btn.set_label('Invalid credentials')
+			btn.set_label(_('Invalid credentials'))
 		except Exception, e:
 			print e
 			btn.set_label(str(e))
 		else:
-			btn.set_label('Success!')
-
-		print "DONE"
+			btn.set_label(_('Success!'))
 
 
 gobject.type_register(MusicBrainzRatingsConfigDialog)
